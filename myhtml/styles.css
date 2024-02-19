@@ -1,0 +1,54 @@
+/* Add this style to your CSS file */
+
+.movie-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: space-around;
+}
+
+.movie-item {
+  max-width: 380px;
+  margin-bottom: 20px;
+  box-sizing: border-box;
+  overflow: hidden;
+}
+
+.movie-item img {
+  max-width: 100%;
+  height: auto;
+}
+
+.movie-details {
+  padding: 10px;
+}
+
+@media (max-width: 1920px) {
+  .movie-item {
+    max-width: calc(20% - 20px);
+  }
+}
+
+@media (max-width: 1600px) {
+  .movie-item {
+    max-width: calc(25% - 20px);
+  }
+}
+
+@media (max-width: 1200px) {
+  .movie-item {
+    max-width: calc(33.33% - 20px);
+  }
+}
+
+@media (max-width: 800px) {
+  .movie-item {
+    max-width: calc(50% - 20px);
+  }
+}
+
+@media (max-width: 480px) {
+  .movie-item {
+    max-width: 100%;
+  }
+}
