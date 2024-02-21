@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Div Highlight on Mouseover</title>
+    <style>
+        /* 스타일링을 위한 CSS */
+        body {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .box {
+            width: 100px;
+            height: 100px;
+            background-color: lightblue;
+            margin: 5px;
+            transition: transform 0.3s;
+        }
+
+        .box:hover {
+            transform: scale(1.2);
+            z-index: 1;
+        }
+    </style>
+</head>
+<body>
+
+<!-- 여러 동일 규격의 div로 구성된 웹 화면 -->
+<div class="box" onmouseover="highlight(this)" onmouseout="unhighlight(this)"></div>
+<div class="box" onmouseover="highlight(this)" onmouseout="unhighlight(this)"></div>
+<div class="box" onmouseover="highlight(this)" onmouseout="unhighlight(this)"></div>
+<!-- 추가 div들을 필요에 따라 추가 -->
+
+<script>
+    // div에 마우스 오버 시 튀어나오도록 하는 함수
+    function highlight(element) {
+        element.style.transform = 'scale(1.2)';
+        element.style.zIndex = '1';
+    }
+
+    // div에서 마우스 나가면 원래 크기와 위치로 복원하는 함수
+    function unhighlight(element) {
+        element.style.transform = 'scale(1)';
+        element.style.zIndex = '0';
+    }
+</script>
+
+</body>
+</html>

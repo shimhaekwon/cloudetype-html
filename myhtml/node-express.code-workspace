@@ -1,0 +1,13 @@
+{
+  "folders": [
+    {
+      "path": "../../node-express"
+    },
+    {
+      "path": ".."
+    }
+  ],
+  "settings": {
+    "liveServer.settings.multiRootWorkspaceName": "cloudetype-html"
+  }
+}

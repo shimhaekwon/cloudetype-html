@@ -1,17 +1,24 @@
 /* Add this style to your CSS file */
+body {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
 
 .movie-list {
   display: flex;
   flex-wrap: wrap;
-  gap: 20px;
+  gap: 10px;
   justify-content: space-around;
 }
 
 .movie-item {
-  max-width: 380px;
-  margin-bottom: 20px;
+  max-width: 350px;
+  margin:5px;
+  margin-bottom: 30px;
   box-sizing: border-box;
   overflow: hidden;
+  background-color: azure;
 }
 
 .movie-item img {
@@ -21,6 +28,48 @@
 
 .movie-details {
   padding: 10px;
+}
+
+.movie_popup {
+  display: none;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  /* height: 50%; */
+  width: 80%;
+  background-color: white;
+  padding: 20px;
+  box-shadow: 0px 0px 10px rgba(0,0,0,0.5);
+  z-index: 1000;
+}
+/*
+.movie_base{
+  z-index: 1;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+*/
+.movie_popup img {
+  max-width: 100%;
+  height: auto;
+}
+
+.popup-content {
+  display: flex;
+}
+
+.popup-image {
+  flex: 1;
+}
+
+.popup-details {
+  flex: 2;
+  margin-left: 10px;
+}
+
+.popup-summary {
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 12px;
 }
 
 @media (max-width: 1920px) {

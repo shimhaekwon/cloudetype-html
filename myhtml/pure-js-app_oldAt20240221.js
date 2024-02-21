@@ -27,7 +27,7 @@ document.addEventListener('DOMContentLoaded', async function () {
       movieDetails.classList.add('movie-details');
 
       movieDetails.innerHTML = `
-        <img src="${movieData.background_image}" alt="${movieData.title}" data-seq="${movieData.seq}" onclick="showMoviePop(${movieData.seq});">
+        <img class="movie-image" src="${movieData.background_image}" alt="${movieData.title}" data-seq="${movieData.seq}" onmouseover="showMoviePop(${movieData.seq});">
         <h2>${movieData.title}</h2>
         <p>Release Year: ${movieData.reg_year}</p>
         <p>Genre: ${movieData.genres}</p>
@@ -36,10 +36,9 @@ document.addEventListener('DOMContentLoaded', async function () {
 
       movieContainer.appendChild(movieDetails);
       appElement.appendChild(movieContainer);
-      movieContainer.addEventListener('mouseover', function () {highlight(this)});
-      movieContainer.addEventListener('mouseout', function () {unhighlight(this)});
 
     });
+
   } catch (error) {
     console.error('Error fetching data:', error);
   }
@@ -48,14 +47,21 @@ document.addEventListener('DOMContentLoaded', async function () {
 function showMoviePop(seq){
   const targetMovieData = movieDataArray.find(movieData => movieData.seq === seq);
   const moviePopup = document.getElementById('movie_popup');
+  const movieImages = document.querySelectorAll('.movie-item img');
 
   if (!targetMovieData) {
     console.error(`No movie data found with seq: ${seq}`);
     return;
   }else{
+
+    const movieImages = document.querySelectorAll('.movie-item img');
+    movieImages.forEach(img => {
+      img.style.pointerEvents = 'none';
+      img.removeEventListener('mouseover', showMoviePop);
+    });
+
     moviePopup.innerHTML = `
     <div class="popup-content">
-    <button id="close-button" style="position: absolute; top: 0; right: 0;" onClick="document.getElementById('movie_popup').style.display = 'none';">X</button>
     <div class="popup-image">
       <img src="${targetMovieData.background_image}" alt="${targetMovieData.title}">
     </div>
@@ -73,18 +79,12 @@ function showMoviePop(seq){
 function hideMoviePop(){
   const moviePopup = document.getElementById('movie_popup');
   moviePopup.style.display = 'none';
-}
 
-// div에 마우스 오버 시 튀어나오도록 하는 함수
-function highlight(element) {
-    element.style.transform = 'scale(1.1)';
-    element.style.zIndex = '1';
-}
-
-// div에서 마우스 나가면 원래 크기와 위치로 복원하는 함수
-function unhighlight(element) {
-    element.style.transform = 'scale(1)';
-    element.style.zIndex = '0';
+  const movieImages = document.querySelectorAll('.movie-item img');
+  movieImages.forEach(img => {
+    img.style.pointerEvents = 'auto';
+    img.addEventListener('mouseover', showMoviePop(img.dataset.seq));
+  });  
 }
 
 // document.querySelector('.movieContainer img').addEventListener('mouseover', function () {});
